@@ -4,3 +4,8 @@ service: mlflow
 
 includes:
 - secret.yaml
+
+resources:
+  cpu: 1
+  memory_gb: 1
+  disk_size_gb: 10
