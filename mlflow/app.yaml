@@ -1,0 +1,6 @@
+runtime: custom
+env: flex
+service: mlflow
+
+includes:
+- secret.yaml
