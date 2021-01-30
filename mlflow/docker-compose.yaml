@@ -1,0 +1,47 @@
+version: '3'
+services:
+  mlflow-ui:
+    image: mlflow-server
+    build: .
+    command: bash -c "mlflow ui --backend-store-uri $$DB_URI --host 0.0.0.0 --port 8080 --default-artifact-root $$DEFAULT_ARTIFACT_ROOT"
+    ports:
+      - 8080:8080
+    links:
+      - mysql:mysql
+    environment: 
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      DB_URI: mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysql/${MYSQL_DATABASE}
+      DEFAULT_ARTIFACT_ROOT: /opt/mlflow
+    depends_on:
+      - mysql
+      - mlflow-server
+
+  mlflow-server:
+    image: mlflow-server
+    build: .
+    command: bash -c "mlflow ui --backend-store-uri $$DB_URI --host 0.0.0.0 --port 8080 --default-artifact-root $$DEFAULT_ARTIFACT_ROOT"
+    links:
+      - mysql:mysql
+    environment: 
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      DB_URI: mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysql/${MYSQL_DATABASE}
+      DEFAULT_ARTIFACT_ROOT: /opt/mlflow
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    environment: 
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - ./mysql_conf:/etc/mysql/conf.d
+
+
+  

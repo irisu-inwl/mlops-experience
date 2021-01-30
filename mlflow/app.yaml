@@ -1,7 +1,7 @@
 runtime: python38
 service: mlflow
 
-entrypoint: mlflow server --backend-store-uri $DB_URI --host 0.0.0.0 --port 8080 --default-artifact-root gs://$GCP_STORAGE_BUCKET
+entrypoint: mlflow ui --backend-store-uri $DB_URI --host 0.0.0.0 --port 8080 --default-artifact-root gs://$GCP_STORAGE_BUCKET
 
 includes:
 - secrets.yaml
@@ -12,4 +12,4 @@ resources:
   disk_size_gb: 10
 
 vpc_access_connector:
-  name: projects/PROJECT_ID/locations/REGION/connectors/CONNECTOR_NAME
+  name: projects/$PROJECT_ID/locations/$REGION/connectors/$CONNECTOR_NAME
