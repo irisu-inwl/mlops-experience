@@ -2,7 +2,6 @@ variable "cloud_sql" {
   type = map(string)
 
   default = {
-    "default" = ""
     database_name = "mlflow"
     instance_name = "mlops-db-sql"
   }
@@ -14,6 +13,7 @@ variable "network" {
   default = {
     vpc_name = "mlops-vpc"
     subnet_name = "mlops-vpc-subnet"
+    vpc_access_name = "mlops-vpc-serverless"
   }
 }
 
@@ -40,9 +40,4 @@ variable "db_password" {
 variable "project_id" {
   type = string
   description = "gcp project id"
-}
-
-variable "tfstate_bucket_name" {
-  type = string
-  description = "gcs bucket name to save tfstate"
 }
