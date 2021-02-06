@@ -21,7 +21,7 @@ services:
   mlflow-server:
     image: mlflow-server
     build: .
-    command: bash -c "mlflow ui --backend-store-uri $$DB_URI --host 0.0.0.0 --port 8080 --default-artifact-root $$DEFAULT_ARTIFACT_ROOT"
+    command: bash -c "mlflow server --backend-store-uri $$DB_URI --host 0.0.0.0 --port 8080 --default-artifact-root $$DEFAULT_ARTIFACT_ROOT"
     links:
       - mysql:mysql
     environment: 
