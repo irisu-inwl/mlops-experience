@@ -1,20 +1,31 @@
-
 variable "cloud_sql" {
   type = map(string)
-  database_name = "mlflow"
-  instance_name = "mlops-db-sql"
+
+  default = {
+    "default" = ""
+    database_name = "mlflow"
+    instance_name = "mlops-db-sql"
+  }
 }
 
 variable "network" {
   type = map(string)
-  vpc_name = "mlops-vpc"
-  subnet_name = "mlops-vpc-subnet"
+
+  default = {
+    vpc_name = "mlops-vpc"
+    subnet_name = "mlops-vpc-subnet"
+  }
 }
 
 variable "gcs" {
   type = map(string)
-  bucket_name = "mlops-storage-example"
+  
+  default = {
+    bucket_name = "mlops-storage-example"
+  }
 }
+
+# specified variable
 
 variable "db_user" {
   type = string
