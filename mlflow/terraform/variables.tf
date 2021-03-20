@@ -11,15 +11,15 @@ variable "network" {
   type = map(string)
 
   default = {
-    vpc_name = "mlops-vpc"
-    subnet_name = "mlops-vpc-subnet"
+    vpc_name        = "mlops-vpc"
+    subnet_name     = "mlops-vpc-subnet"
     vpc_access_name = "mlops-vpc-serverless"
   }
 }
 
 variable "gcs" {
   type = map(string)
-  
+
   default = {
     bucket_name = "mlops-storage-example"
   }
@@ -28,16 +28,16 @@ variable "gcs" {
 # specified variable
 
 variable "db_user" {
-  type = string
+  type        = string
   description = "cloud sql username"
 }
 
 variable "db_password" {
-  type = string
+  type        = string
   description = "cloud sql password"
 }
 
 variable "project_id" {
-  type = string
+  type        = string
   description = "gcp project id"
 }

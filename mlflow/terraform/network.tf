@@ -1,6 +1,6 @@
 resource "google_compute_network" "mlops_vpc" {
-  project = var.project_id
-  name = var.network.vpc_name
+  project                 = var.project_id
+  name                    = var.network.vpc_name
   auto_create_subnetworks = false
 }
 
